@@ -3548,12 +3548,16 @@ static inline void
 fm_watch_handle(struct fm *p)
 {
   for (cut n = {0};;) {
-    switch (fs_watch_pump(&p->p, &n.d, &n.l)) {
-    case '!': fm_dir_refresh(p); return;
+    char r = fs_watch_pump(&p->p, &n.d, &n.l);
+    if (!r) return;
+    if (r == '!' || !n.l) {
+      fm_dir_refresh(p);
+      return;
+    }
+    switch (r) {
     case '+': fm_dir_add(p, n); break;
     case '-': fm_dir_del(p, n); break;
     case '~': fm_dir_del(p, n); fm_dir_add(p, n); break;
-    default: return;
     }
   }
 }
