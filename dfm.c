@@ -2176,7 +2176,7 @@ fm_path_change(struct fm *p)
   fm_filter_clear(p);
   if (fm_mark_materialize(p) < 0) {
     fm_draw_err(p,
-      S("Not enough memory to materialize marks, unmark to cd"), 0);
+      S("not enough memory to materialize marks, unmark to cd"), 0);
     return 0;
   }
   return 1;
@@ -2560,7 +2560,7 @@ static inline int
 fm_cmd_build_bulk(struct fm *p, cut s, usize ti, usize tc, u32 f)
 {
   if (fm_mark_materialize(p) < 0) {
-    fm_draw_err(p, S("Not enough memory to materialize marks"), 0);
+    fm_draw_err(p, S("not enough memory to materialize marks"), 0);
     return -1;
   }
   if (fm_cmd_build_bulk_exec(p, s, ti, tc, f) < 0)
@@ -2683,7 +2683,7 @@ static inline int
 fm_cmd_run_sh(struct fm *p, str *s)
 {
   if (fm_mark_materialize(p) < 0) {
-    fm_draw_err(p, S("Not enough memory to materialize marks"), 0);
+    fm_draw_err(p, S("not enough memory to materialize marks"), 0);
     return -1;
   }
   usize e = s->m[0] == '!';
@@ -2732,11 +2732,11 @@ fm_cmd_run(struct fm *p, str *s)
   int r = 0;
   if (!s->l) return 0;
   if (p->cf & CMD_MARK_DIR && !(p->f & FM_MARK_PWD) && p->vml) {
-    fm_draw_err(p, S("Not in mark directory"), 0);
+    fm_draw_err(p, S("not in mark directory"), 0);
     return -1;
   }
   if (p->cf & CMD_NOT_MARK_DIR && p->f & FM_MARK_PWD) {
-    fm_draw_err(p, S("In mark directory"), 0);
+    fm_draw_err(p, S("in mark directory"), 0);
     return -1;
   }
   if (s->m[0] == '!')
@@ -2879,7 +2879,7 @@ act_copy_pwd(struct fm *p)
     const char *const a[] = { get_env("DFM_COPYER", DFM_COPYER).d, NULL };
     fm_exec(p, fd, NULL, a, 1, 0);
     close(fd);
-    fm_draw_msg(p, S("Copied PWD to clipboard"));
+    fm_draw_msg(p, S("copied PWD to clipboard"));
   }
 }
 
@@ -3190,7 +3190,7 @@ act_mark_toggle(struct fm *p)
   if (!(p->f & FM_MARK_PWD)) fm_mark_clear(p);
   fm_mark_init(p);
   if (!fm_mark_toggle_idx(p, p->c)) {
-    fm_draw_err(p, S("Not enough memory to mark"), 0);
+    fm_draw_err(p, S("not enough memory to mark"), 0);
     return;
   }
   fm_mark_invalidate(p);
