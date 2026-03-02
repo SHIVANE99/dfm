@@ -57,7 +57,7 @@ fs_watch(struct platform *p, const char *path)
     close(p->dfd);
     p->dfd = -1;
   }
-  p->dfd = open(path, O_EVTONLY);
+  p->dfd = open(path, O_RDONLY);
   if (p->dfd == -1) return;
   EV_SET(&p->ev, p->dfd,
     EVFILT_VNODE, EV_ADD|EV_CLEAR,
