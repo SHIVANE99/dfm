@@ -69,7 +69,7 @@ The configure script takes three forms of arguments.
 2) Variables:           CC=/bin/cc CFLAGS="-O3" CONFIG_TINY=1 LDFLAGS=" "
 3) C macro definitions: -DMACRO -DMACRO=VALUE -UMACRO
 
-There are three different user-centric build configurations.
+There are three different build configurations.
 
 1) Default:      -O2
 2) CONFIG_SMALL: -Os + aggressive compiler flags
@@ -100,7 +100,7 @@ alternate screen, add -DDFM_CLEAR_EDIT to your configure flags.
 CONFIGURATION
 ________________________________________________________________________________
 
-DFM is mostly configured at compile-time via its config files.
+DFM is configured at compile-time via its config files.
 
 * ./configure:     Build system, compilation and installation.
 * config.h.in:     Default settings, colors, etc.
@@ -112,9 +112,9 @@ Refer to these files for more information.
 
 --[DPP]-------------------------------------------------------------------------
 
-The config .in files are processed by https://github.com/dylanaraps/dpp
-(see bin/dpp) so POSIX shell code can be used within them. Everything defined
-by ./configure is accessible within these files.
+The config*.in files are processed by dpp (see bin/dpp) so POSIX shell code can
+be used within them. Everything defined by ./configure is also accessible within
+these files as variables.
 
 See https://github.com/dylanaraps/dpp for more information.
 
@@ -339,8 +339,8 @@ and sends it all to the shell.
 --[Bound Commands]--------------------------------------------------------------
 
 Commands can be bound to keys. When a command is bound it can either run
-straightaway or open the interactive prompt with pre-filled information.
-Flas can also be set to better integrate the command into DFM.
+straight away or open the interactive prompt with pre-filled information.
+Flags can also be set to better integrate the command into DFM.
 
 Move is defined as follows:
 
@@ -382,14 +382,15 @@ ________________________________________________________________________________
   for fast operations and relatively large directory trees.
 
 * When a directory too large for DFM is entered the statusline sort indicator is
-  replaced with [T] to signify truncation and the statusline colored red.
-  Truncation occurs when the name storage or entry list is exhausted,
-  whichever comes first. The limits are reasonable and unlikely to be reached
-  outside of synthetic directory trees so this isn't really a problem.
+  replaced with [T] to signify truncation, sorting is disabled and the
+  statusline colored red. Truncation occurs when memory in the name storage or
+  entry list is exhausted, whichever comes first. The limits are reasonable and
+  unlikely to be reached outside of synthetic directory trees so this isn't
+  really a problem.
 
-* File operations using coreutils commands work but aren't as nice as having
-  fully integrated internal operations. I was working on it but it ended up
-  being a massive pain in the ass so I abandoned the idea. It's not enough to
+* File operations using coreutils commands work well but aren't as nice as
+  having fully integrated internal operations. I was working on it but it ended
+  up being a massive pain in the ass so I abandoned the idea. It's not enough to
   use the POSIX functions as you will be left fighting TOCTOU race conditions,
   control flow hell, error handling madness and other crap. A solution is to
   conditionally use each OS's extension functions (ie, Linux's copy_file,
@@ -407,6 +408,11 @@ ________________________________________________________________________________
   optional modern ones (bracketed paste, XTerm alt screen,
   synchronized updates). Look at lib/term.h, lib/term_key.h, lib/vt.h and scan
   dfm.c for VT_.* to see how it works.
+
+  NOTE: DFM works in pretty much every terminal emulator in wide use but since
+  it intentionally doesn't use terminfo it may not display correctly in some
+  environments (notably the TTY console in some BSDs). I don't think there's
+  anything I can do to remedy this unfortunately.
 
 * The number of marks is bounded only when it comes to materializing them. For
   1000 marks dfm needs the space to construct an argv to accommodate them. This
