@@ -217,8 +217,9 @@ at the actions each key is bound to.
 The statusline is as follows:
 
 ```
- 1/1 [RnHE] [1+] ~0B /path/to/current/directory/<query>
+1 1/1 [RnHE] [1+] ~0B /path/to/current/directory/<query>
 
+ 1          - Shows nest level of dfm. Only shown if > 0.
  1/1        - The entry number under the cursor and the total visible entries.
 
  [RnHE]     - Indicators.

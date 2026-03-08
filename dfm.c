@@ -194,6 +194,7 @@ struct fm {
   fm_filter sf;
 
   s64 tz;
+  u8 nl;
 };
 
 // Entry Virtual {{{
@@ -1400,6 +1401,15 @@ fm_draw_inf(struct fm *p)
     p->f & FM_ROOT ? CUT(DFM_COL_NAV_ROOT) : CUT(DFM_COL_NAV);
   s32 vw = p->col;
   fm_draw_nav_begin(p, c);
+
+  if (unlikely(p->nl)) {
+    STR_PUSH(&p->io, " " VT_SGR(1));
+    str_push_c(&p->io, p->nl);
+    STR_PUSH(&p->io, VT_SGR0);
+    str_push(&p->io, c.d, c.l);
+    vw -= 2;
+  }
+
   str_push_c(&p->io, ' ');
   vw -= str_push_u32(&p->io, p->y + !!p->vl);
   str_push_c(&p->io, '/');
@@ -3505,9 +3515,20 @@ fm_io_flush(str *s, void *ctx, usize n)
 }
 
 static inline int
+fm_nest(struct fm *p)
+{
+  char nl[2] = "0";
+  cut l = get_env("DFM_LEVEL", "");
+  if (l.l) p->nl = *nl = *l.d + 1;
+  return setenv("DFM_LEVEL", nl, 1);
+}
+
+static inline int
 fm_init(struct fm *p)
 {
   if (fs_watch_init(&p->p) == -1)
+    return -1;
+  if (fm_nest(p) == -1)
     return -1;
   p->opener = get_env("DFM_OPENER", DFM_OPENER);
   p->dfd = AT_FDCWD;
