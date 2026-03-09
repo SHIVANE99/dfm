@@ -25,9 +25,10 @@ export c_version=c99
 #
 # DPP configuration.
 #
-export PATH="$PWD/bin:$PATH"
 export CFG_DPP_INCLUDE=./configure
-export CFG_DPP_CMD=bin/dpp
+CFG_DPP_CMD="$(command -v dpp 2>/dev/null || echo bin/dpp)"
+export CFG_DPP_CMD
+export PATH="$PWD/bin:$PATH"
 
 #
 # Make configuration.
